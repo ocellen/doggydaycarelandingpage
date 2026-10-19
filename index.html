@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff7fa">
+<meta name="description" content="A simpler way for independent dog daycare owners to manage bookings, vaccination checks and daily dog updates.">
+<title>Doggy Daycare Essentials — More time for the dogs</title>
+<style>
+:root {
+  --pink:#bd3978;
+  --pink-dark:#942457;
+  --pale:#fce8f1;
+  --bg:#fff8fb;
+  --ink:#352532;
+  --muted:#786c77;
+  --line:#f0dfe8;
+  --white:#fff;
+  --radius:22px;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;
+}
+a {color:inherit}
+button,input {font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible {
+  outline:3px solid #d77aa7;
+  outline-offset:3px;
+}
+.wrap {width:min(1100px,100% - 36px);margin:auto}
+header {
+  position:sticky;top:0;z-index:10;
+  background:#fff9fced;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav {
+  min-height:70px;display:flex;align-items:center;
+  justify-content:space-between;gap:15px;
+}
+.brand {display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-icon {
+  display:grid;place-items:center;width:42px;height:42px;
+  border-radius:14px;background:var(--pale);font-size:23px;
+}
+.brand strong {display:block;font-size:15px;line-height:1.3}
+.brand small {color:var(--muted);font-size:11px}
+.nav-link {
+  color:var(--pink-dark);font-weight:750;font-size:13px;
+  text-decoration:none;
+}
+.button {
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;text-align:center;text-decoration:none;
+  border:1px solid transparent;border-radius:14px;
+  padding:13px 19px;font-weight:800;font-size:14px;
+  transition:transform .15s,background .15s;
+}
+.button:hover {transform:translateY(-2px)}
+.primary {background:var(--pink);color:white}
+.primary:hover {background:var(--pink-dark)}
+.secondary {background:white;color:var(--ink);border-color:var(--line)}
+.hero {padding:42px 0 55px}
+.hero-grid {
+  display:grid;grid-template-columns:1.03fr .97fr;
+  gap:38px;align-items:center;
+}
+.eyebrow {
+  display:inline-block;background:var(--pale);color:var(--pink-dark);
+  padding:7px 12px;border-radius:30px;
+  font-size:11px;font-weight:850;letter-spacing:.7px;text-transform:uppercase;
+}
+h1 {
+  font-size:clamp(39px,6.2vw,65px);line-height:1.03;
+  letter-spacing:-2.8px;margin:19px 0;
+}
+h1 em {font-style:normal;color:var(--pink)}
+.lead {font-size:17px;color:var(--muted);max-width:490px}
+.actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.micro {font-size:12px;color:var(--muted);margin-top:15px}
+.hero-image {
+  position:relative;min-height:410px;border-radius:30px;overflow:hidden;
+  background:#f5dce8;
+}
+.hero-image img {width:100%;height:100%;min-height:410px;object-fit:cover;display:block}
+.image-tag {
+  position:absolute;bottom:17px;left:17px;right:17px;
+  background:#ffffffed;border:1px solid #ffffff;
+  border-radius:17px;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.tag-icon {
+  width:42px;height:42px;flex-shrink:0;border-radius:13px;
+  background:var(--pale);display:grid;place-items:center;font-size:21px;
+}
+.image-tag strong {display:block;font-size:13px}
+.image-tag span {display:block;font-size:12px;color:var(--muted)}
+section {padding:65px 0}
+.section-head {max-width:650px;margin-bottom:30px}
+.kicker {color:var(--pink-dark);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:1px}
+h2 {font-size:clamp(28px,4vw,42px);line-height:1.12;letter-spacing:-1.3px;margin:10px 0 13px}
+.section-head p {color:var(--muted);font-size:16px}
+.problem {background:#fff}
+.quote-card {
+  border:1px solid var(--line);border-radius:var(--radius);
+  background:#fff8fb;padding:27px;
+}
+.quote-card blockquote {
+  font-size:clamp(21px,3vw,30px);line-height:1.4;
+  font-weight:750;letter-spacing:-.5px;margin:0;
+}
+.quote-card blockquote span {color:var(--pink)}
+.quote-note {font-size:12px;color:var(--muted);margin-top:15px}
+.pain-grid {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px;
+}
+.pain {
+  border:1px solid var(--line);border-radius:17px;padding:19px;background:white;
+}
+.pain-icon {font-size:23px}
+.pain h3 {font-size:15px;margin:9px 0 5px}
+.pain p {font-size:13px;color:var(--muted);margin:0}
+.steps {
+  display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+}
+.step {
+  background:white;border:1px solid var(--line);
+  border-radius:20px;padding:22px;
+}
+.step-number {
+  display:grid;place-items:center;width:40px;height:40px;
+  border-radius:13px;background:var(--pale);
+  color:var(--pink-dark);font-weight:900;font-size:16px;
+}
+.step h3 {font-size:18px;margin:17px 0 7px}
+.step p {color:var(--muted);font-size:14px;margin:0}
+.feature-list {list-style:none;padding:0;margin:18px 0 0}
+.feature-list li {display:flex;gap:9px;margin:10px 0;font-size:13px}
+.check {color:var(--pink);font-weight:900}
+.demo-section {background:#fff}
+.demo-card {
+  display:grid;grid-template-columns:1fr 1fr;gap:30px;
+  align-items:center;background:#fff3f8;border-radius:27px;
+  padding:30px;
+}
+.demo-card p {color:var(--muted)}
+.demo-preview {
+  background:white;border:1px solid var(--line);
+  padding:18px;border-radius:19px;box-shadow:0 15px 40px #54213c0c;
+}
+.preview-top {display:flex;justify-content:space-between;align-items:center;gap:10px}
+.preview-top strong {font-size:14px}
+.demo-pill {background:#e7f4e8;color:#316644;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:800}
+.preview-day {display:flex;justify-content:space-between;gap:8px;margin-top:17px}
+.preview-day div {text-align:center;background:#fff4f8;border-radius:11px;padding:10px 4px;flex:1;font-size:11px}
+.preview-day strong {display:block;font-size:17px}
+.preview-row {display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding:12px 0;font-size:12px}
+.preview-dot {width:35px;height:35px;border-radius:11px;background:var(--pale);display:grid;place-items:center}
+.preview-row span {margin-left:auto;color:var(--pink-dark);font-weight:800;font-size:10px}
+.price-section {background:var(--bg)}
+.price-card {
+  max-width:560px;margin:auto;text-align:center;padding:31px;
+  background:white;border:1px solid var(--line);border-radius:25px;
+  box-shadow:0 20px 55px #54213c09;
+}
+.price-label {color:var(--pink-dark);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:1px}
+.price {font-size:55px;letter-spacing:-2px;line-height:1.15;font-weight:900;margin:14px 0 4px}
+.price small {font-size:16px;letter-spacing:0;color:var(--muted);font-weight:600}
+.price-note {color:var(--muted);font-size:13px}
+.price-card .feature-list {text-align:left;max-width:310px;margin:22px auto}
+.planned {
+  background:#fff4f8;border:1px solid #f1d8e5;border-radius:13px;
+  padding:12px;text-align:left;color:var(--muted);font-size:12px;
+}
+.waitlist {background:#382532;color:white}
+.wait-grid {display:grid;grid-template-columns:1fr .9fr;gap:35px;align-items:start}
+.waitlist .kicker {color:#f3a9cd}
+.waitlist h2 {font-size:clamp(32px,5vw,48px)}
+.waitlist .desc {color:#eadce5}
+.form-card {background:white;color:var(--ink);border-radius:22px;padding:23px}
+.form-card label {display:block;font-weight:750;font-size:12px;margin-bottom:6px}
+.form-card input {
+  width:100%;border:1px solid var(--line);border-radius:12px;
+  padding:13px;margin-bottom:14px;background:#fffafd;color:var(--ink);
+}
+.form-card .button {width:100%;cursor:pointer}
+.form-foot {font-size:11px;color:var(--muted);margin-top:12px}
+.thanks {
+  display:none;border-radius:14px;padding:15px;margin-top:14px;
+  background:#fce8f1;color:#79204d;font-size:14px;
+}
+.thanks.show {display:block}
+footer {padding:25px 0;background:#2d202b;color:#f6eaf1}
+.footer-inner {display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+footer p {font-size:12px;color:#d9c6d2;margin:0}
+footer a {font-size:12px;font-weight:750;color:white;text-underline-offset:4px}
+@media(max-width:760px) {
+  .wrap {width:min(100% - 30px,550px)}
+  .hero {padding:30px 0 40px}
+  .hero-grid,.demo-card,.wait-grid {grid-template-columns:1fr;gap:24px}
+  h1 {font-size:clamp(40px,12vw,57px);letter-spacing:-2px}
+  .lead {font-size:16px}
+  .hero-image,.hero-image img {min-height:290px}
+  section {padding:48px 0}
+  .pain-grid {grid-template-columns:1fr}
+  .steps {grid-template-columns:1fr}
+  .step {padding:19px}
+  .demo-card {padding:21px}
+  .price-card {padding:25px 19px}
+  .wait-grid {gap:18px}
+  .brand strong {font-size:13px}
+  .nav-link {font-size:12px}
+}
+@media(prefers-reduced-motion:reduce) {
+  html {scroll-behavior:auto}
+  *,*::before,*::after {transition:none!important}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#" aria-label="Doggy Daycare Essentials home">
+      <span class="brand-icon" aria-hidden="true">🐾</span>
+      <span><strong>Doggy Daycare Essentials</strong><small>Made for independent daycares</small></span>
+    </a>
+    <a class="nav-link" href="#waitlist">Join the waiting list ↗</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">For independent dog daycare owners</span>
+        <h1>Less admin.<br>More time for <em>the dogs.</em></h1>
+        <p class="lead">Keep bookings, vaccination checks and daily dog notes together — so you're not piecing the day together from messages.</p>
+        <div class="actions">
+          <a class="button primary" href="https://ocellen.github.io/waggytailsdaycaredemo/" target="_blank" rel="noopener noreferrer">Try the demo <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href="#how-it-works">See how it works</a>
+        </div>
+        <p class="micro">A focused concept for independent dog daycares in Ireland. Explore the demo before deciding if it fits your day.</p>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=85"
+             alt="A happy golden retriever outdoors" fetchpriority="high">
+        <div class="image-tag">
+          <div class="tag-icon" aria-hidden="true">💗</div>
+          <div><strong>One calmer place to run the day</strong><span>Bookings · Vaccinations · Daily updates</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap"><p class="micro">Photo: Unsplash, <a href="https://unsplash.com/" target="_blank" rel="noopener noreferrer">Unsplash photo library</a>.</p></div>
+  </section>
+
+  <section class="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Sound familiar?</span>
+        <h2>You opened a dog daycare to care for dogs — not chase messages.</h2>
+        <p>When bookings live across chats and vaccination dates live on paper, the admin follows you around all day.</p>
+      </div>
+      <div class="quote-card">
+        <blockquote>“I'm answering messages all day, trying to remember who's booked, and hoping I haven't missed a vaccination date. <span>I need something simple that works while my hands are full.</span>”</blockquote>
+        <p class="quote-note">A composite of the problems this product is designed to address — not a customer testimonial.</p>
+      </div>
+      <div class="pain-grid">
+        <article class="pain">
+          <div class="pain-icon" aria-hidden="true">📆</div>
+          <h3>Bookings scattered everywhere</h3>
+          <p>Requests arrive by message, and it's hard to see at a glance which days still have room.</p>
+        </article>
+        <article class="pain">
+          <div class="pain-icon" aria-hidden="true">🩺</div>
+          <h3>Vaccinations easy to overlook</h3>
+          <p>Paper records make it harder to spot an expired date before a dog arrives.</p>
+        </article>
+        <article class="pain">
+          <div class="pain-icon" aria-hidden="true">💬</div>
+          <h3>The same updates, all day</h3>
+          <p>Owners want to know how their dog is doing, while your team is busy caring for them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Simple by design</span>
+        <h2>Three parts. One clearer day.</h2>
+        <p>Designed around the everyday jobs of a small, independent dog daycare team.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-number">01</div>
+          <h3>See the week</h3>
+          <p>Check bookings and places remaining in a weekly view, with a daily limit of 40 in the demo.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> View daily capacity</li>
+            <li><span class="check">✓</span> Flag vaccination issues</li>
+            <li><span class="check">✓</span> See the nearest available day</li>
+          </ul>
+        </article>
+        <article class="step">
+          <div class="step-number">02</div>
+          <h3>Keep care notes quick</h3>
+          <p>See the day's dogs, check vaccination status and tap a ready-made activity note.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Ate</li>
+            <li><span class="check">✓</span> Walked or played</li>
+            <li><span class="check">✓</span> Napped</li>
+          </ul>
+        </article>
+        <article class="step">
+          <div class="step-number">03</div>
+          <h3>Share their day</h3>
+          <p>Preview an individual dog's daily notes in the Pupdate owner view.</p>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> See that dog's notes</li>
+            <li><span class="check">✓</span> Keep the demo focused on one dog</li>
+            <li><span class="check">✓</span> Explore the owner-view concept</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="wrap demo-card">
+      <div>
+        <span class="kicker">Take a look for yourself</span>
+        <h2>Don't just take our word for the idea.</h2>
+        <p>Try the interactive alpha. Explore the weekly bookings, vaccination warnings, one-tap notes and sample Pupdate view.</p>
+        <p class="micro">The demo uses fictional records and browser storage. It is not a live service for managing real customers.</p>
+        <div class="actions">
+          <a class="button primary" href="https://ocellen.github.io/waggytailsdaycaredemo/" target="_blank" rel="noopener noreferrer">Try the demo ↗</a>
+        </div>
+      </div>
+      <div class="demo-preview" aria-label="Illustrative preview of the app">
+        <div class="preview-top"><strong>🐾 Your daycare week</strong><span class="demo-pill">Demo preview</span></div>
+        <div class="preview-day">
+          <div>MON<strong>18</strong>booked</div>
+          <div>TUE<strong>23</strong>booked</div>
+          <div>WED<strong>10</strong>booked</div>
+          <div>THU<strong>26</strong>booked</div>
+        </div>
+        <div style="font-size:11px;color:#786c77;margin:18px 0 5px">SAMPLE VACCINATION ALERTS</div>
+        <div class="preview-row"><div class="preview-dot">🐶</div><strong>Vaccination due soon</strong><span>AMBER</span></div>
+        <div class="preview-row"><div class="preview-dot">🐕</div><strong>Expired record</strong><span style="color:#b93636">RED</span></div>
+        <div class="preview-row"><div class="preview-dot">💗</div><strong>Quick daily notes</strong><span>ONE TAP</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="price-section">
+    <div class="wrap">
+      <div class="section-head" style="text-align:center;margin:0 auto 27px">
+        <span class="kicker">Straightforward pricing</span>
+        <h2>Small-business friendly.</h2>
+        <p>A proposed price for independent daycare owners — clearly marked as a plan, not an existing subscription offer.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-label">Planned early-access price</div>
+        <div class="price">€19 <small>/ month</small></div>
+        <p class="price-note">Proposed pricing · Not currently available to purchase</p>
+        <ul class="feature-list">
+          <li><span class="check">✓</span> Weekly booking and capacity view</li>
+          <li><span class="check">✓</span> Vaccination status alerts</li>
+          <li><span class="check">✓</span> Quick daily care notes</li>
+          <li><span class="check">✓</span> Individual dog Pupdate view</li>
+        </ul>
+        <p class="planned"><strong>Planned, not yet promised:</strong> a production-ready account, secure multi-user access, shared live data and real owner logins would need to be built before launch.</p>
+        <a class="button primary" style="width:100%;margin-top:19px" href="#waitlist">Join the waiting list</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <div class="wrap wait-grid">
+      <div>
+        <span class="kicker">Help shape what comes next</span>
+        <h2>Be on the list for a calmer daycare day.</h2>
+        <p class="desc">Interested in trying Doggy Daycare Essentials when it's ready? Register your interest below.</p>
+        <p class="desc" style="font-size:13px">This is a front-end concept. The form does not send or save your details, and joining it here does not create an actual waiting-list entry.</p>
+      </div>
+      <form class="form-card" id="waitlistForm">
+        <h3 style="margin:0 0 5px;font-size:20px">Join the waiting list</h3>
+        <p style="font-size:12px;color:#786c77;margin-bottom:19px">A demo interaction only — no details leave this page.</p>
+        <label for="firstName">Your first name</label>
+        <input id="firstName" name="firstName" autocomplete="given-name" placeholder="First name" required>
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@yourdaycare.ie" required>
+        <label for="daycareName">Daycare name (optional)</label>
+        <input id="daycareName" name="daycareName" placeholder="Your daycare">
+        <button class="button primary" type="submit">Register my interest →</button>
+        <div class="thanks" id="thanksMessage" role="status" aria-live="polite">
+          <strong>Thanks for your interest! 💗</strong><br>
+          This is a demo, so your details haven't been sent or stored. No actual waiting-list entry has been created.
+        </div>
+        <p class="form-foot">No emails are sent. This form only displays a confirmation message.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <p>🐾 Doggy Daycare Essentials · A concept for independent dog daycares in Ireland.</p>
+    <a href="notes.html">Behind the build ↗</a>
+  </div>
+</footer>
+
+<script>
+document.getElementById("waitlistForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  document.getElementById("thanksMessage").classList.add("show");
+  document.getElementById("thanksMessage").scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+    block: "nearest"
+  });
+});
+</script>
+</body>
+</html>
